@@ -1,0 +1,215 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f3f4f6;
+  color: #1f2937;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+/* HEADER */
+
+header {
+  background: #111827;
+  color: white;
+  padding: 32px 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+header p {
+  margin: 10px 0 0;
+  color: #d1d5db;
+  font-size: 16px;
+}
+
+/* MAIN */
+
+main {
+  width: 100%;
+  max-width: 900px;
+  margin: 35px auto;
+  padding: 0 20px;
+}
+
+/* CARDS */
+
+section {
+  background: white;
+  border-radius: 12px;
+  padding: 26px;
+  margin-bottom: 24px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* LABEL */
+
+.label {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #6b7280;
+}
+
+/* INCIDENT */
+
+.incident-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.incident-card h2 {
+  margin: 4px 0 15px;
+  font-size: 28px;
+}
+
+.severity {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 7px 15px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* HEADINGS */
+
+h2 {
+  margin-top: 8px;
+  color: #111827;
+}
+
+h3 {
+  margin-top: 22px;
+  margin-bottom: 8px;
+  color: #374151;
+}
+
+h4 {
+  margin-bottom: 5px;
+  color: #4b5563;
+}
+
+/* LISTS */
+
+li {
+  margin-bottom: 7px;
+}
+
+/* BUTTONS */
+
+button {
+  margin-top: 20px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.resolve-button {
+  margin-left: 12px;
+  background: #059669;
+}
+
+.resolve-button:hover {
+  background: #047857;
+}
+
+/* MEMORY */
+
+.memory-card {
+  border-left: 5px solid #7c3aed;
+}
+
+.memory-card .label {
+  color: #6d28d9;
+}
+
+.memory {
+  background: #f5f3ff;
+  border-radius: 8px;
+  padding: 18px;
+  margin-top: 15px;
+}
+
+/* AI INVESTIGATION */
+
+.investigation-card {
+  border-left: 5px solid #2563eb;
+}
+
+.investigation-card .label {
+  color: #1d4ed8;
+}
+
+/* NO MEMORY */
+
+.no-memory {
+  border-left: 5px solid #9ca3af;
+  background: #f9fafb;
+}
+
+/* SUCCESS */
+
+.success {
+  margin-top: 16px;
+  color: #047857;
+  font-weight: bold;
+}
+
+/* ERROR */
+
+.error {
+  margin-top: 16px;
+  color: #b91c1c;
+  font-weight: bold;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 25px;
+  }
+
+  main {
+    padding: 0 12px;
+  }
+
+  section {
+    padding: 20px;
+  }
+
+  .incident-header {
+    align-items: flex-start;
+  }
+
+  .resolve-button {
+    margin-left: 0;
+  }
+}
