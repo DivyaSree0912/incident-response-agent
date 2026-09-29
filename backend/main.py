@@ -1,6 +1,9 @@
 from fastapi import FastAPI, HTTPException
 from backend.models import Incident
 
+from agent.agent import investigate_incident as run_agent_investigation
+from memory.incident_memory import recall_incidents, retain_incident
+
 
 app = FastAPI(title="Incident Response Agent")
 
@@ -116,18 +119,19 @@ def investigate_incident(incident_id: str):
     for incident in incidents:
         if incident.id == incident_id:
 
-            return {
-                "summary": f"Investigation started for {incident.id}",
-                "root_cause": incident.root_cause,
-                "evidence": incident.logs,
-                "historical_matches": [],
-                "recommended_action": (
-                    incident.resolution
-                    if incident.resolution
-                    else "No recommendation available yet."
-                ),
-                "confidence": 0.75
-            }
+            incident_data = incident.model_dump()
+
+            # 1. Recall similar historical incidents from Hindsight
+            historical_memories = recall_incidents(incident_data)
+
+            # 2. Send current incident + historical memories to AI Agent
+            result = run_agent_investigation(
+                incident=incident_data,
+                historical_memories=historical_memories,
+            )
+
+            # 3. Return the AI investigation result
+            return result
 
     raise HTTPException(
         status_code=404,
@@ -140,6 +144,9 @@ def resolve_incident(incident_id: str):
         if incident.id == incident_id:
 
             incident.outcome = "Resolved"
+
+            # Store the resolved incident in Hindsight
+            retain_incident(incident.model_dump())
 
             return {
                 "message": "Incident resolved successfully",
