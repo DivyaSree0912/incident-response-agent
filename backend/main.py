@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 from backend.models import Incident
 
 from agent.agent import investigate_incident as run_agent_investigation
-from memory.incident_memory import recall_incidents, retain_incident
+from memory.incident_memory import retain_incident
 
 
 app = FastAPI(title="Incident Response Agent")
@@ -121,13 +121,8 @@ def investigate_incident(incident_id: str):
 
             incident_data = incident.model_dump()
 
-            # 1. Recall similar historical incidents from Hindsight
-            historical_memories = recall_incidents(incident_data)
-
-            # 2. Send current incident + historical memories to AI Agent
             result = run_agent_investigation(
                 incident=incident_data,
-                historical_memories=historical_memories,
             )
 
             # 3. Return the AI investigation result
