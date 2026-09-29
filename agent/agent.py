@@ -7,6 +7,8 @@ from groq import Groq
 
 from .prompts import SYSTEM_PROMPT
 from .schemas import AgentOutput, HistoricalMatch
+from memory.incident_memory import recall_incidents
+from memory.hindsight_client import close_hindsight
 
 
 load_dotenv()
@@ -138,6 +140,12 @@ def investigate_incident(
 
     Member 3 can later call this function directly.
     """
+
+    if historical_memories is None:
+        try:
+            historical_memories = recall_incidents(incident)
+        finally:
+            close_hindsight()
 
     agent = IncidentInvestigationAgent()
 
