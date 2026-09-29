@@ -15,18 +15,17 @@ incident = {
     ],
 }
 
-
 historical_memories = [
     {
-        "incident_id": "INC-999",
-        "service": "email-service",
-        "severity": "low",
+        "incident_id": "INC-001",
+        "service": "payment-api",
+        "severity": "high",
         "symptoms": [
-            "SMTP authentication failures",
-            "Email delivery delays",
+            "High API latency",
+            "Database connection failures",
         ],
-        "root_cause": "Expired SMTP credentials",
-        "resolution": "Rotated SMTP credentials",
+        "root_cause": "Database connection pool exhaustion",
+        "resolution": "Increased connection pool capacity and adjusted timeout settings",
     }
 ]
 
